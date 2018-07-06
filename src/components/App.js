@@ -4,6 +4,7 @@ import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
  
 import NameForm from './NameForm';
+import '../styles/main.css';
  
 class App extends Component {
   static propTypes = {
@@ -32,7 +33,7 @@ class App extends Component {
  
     return (
       <div>
-        <h1>Hi</h1>
+        <h1 className='title'>Hi</h1>
         <NameForm name={name} onChange={this.handleNameChange.bind(this)} />
         {this.state.name && <h1>Hello {this.state.name}!</h1>}
       </div>
