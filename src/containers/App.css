@@ -1,0 +1,16 @@
+.container {
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 2em;
+  border-bottom: 1px solid #ddd;
+  .title {
+    font-weight: 100;
+  }
+}
+
+.msg {
+  font-family: Monaco, Monospace;
+}
+

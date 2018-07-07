@@ -4,6 +4,28 @@
     "react"
   ],
   "plugins": [
+    ["babel-plugin-root-import", {
+      "rootPathSuffix": "src"
+    }],
     "transform-class-properties"
-  ]
+  ],
+  "env": {
+    "server": {
+      "presets": [
+        "react",
+        ["env", {
+          "targets": { "node": "current" }
+        }]
+      ],
+      "plugins": [
+        ["babel-plugin-root-import", {
+          "rootPathSuffix": "src"
+        }],
+        "transform-class-properties",
+        ["css-modules-transform", {
+          "generateScopedName": "[name]_[local]_[hash:base64:5]"
+        }]
+      ]
+    }
+  }
 }

@@ -1,27 +1,42 @@
 {
-  "name": "react-ssr-cookie",
+  "name": "react-parcel-ssr",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
-    "concurrently": "^3.6.0",
     "express": "^4.16.3",
-    "ignore-styles": "^5.0.1",
-    "parcel": "^1.9.4",
-    "parcel-bundler": "^1.9.4",
+    "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-cookie": "^2.2.0",
     "react-dom": "^16.4.1",
     "universal-cookie-express": "^2.2.0"
   },
+  "devDependencies": {
+    "autoprefixer": "^8.6.5",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-css-modules-transform": "^1.6.1",
+    "babel-plugin-root-import": "^6.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "concurrently": "^3.6.0",
+    "parcel": "^1.9.4",
+    "parcel-bundler": "^1.9.4",
+    "postcss-modules": "^1.1.0",
+    "postcss-nested": "^3.0.0"
+  },
   "scripts": {
-    "devclient": "parcel serve src/client.js",
-    "devserver": "PORT=8080 babel-node app",
-    "dev": "concurrently 'yarn devclient' 'yarn devserver'"
+    "clear": "rm -rf dist .cache",
+    "clear-build": "rm -rf build",
+
+    "dev": "yarn clear && BABEL_ENV=client parcel src/index.html --out-dir .tmp --public-url /static/",
+
+    "ssr": "yarn dev && BABEL_ENV=server babel-node server/app.js",
+
+    "build-client": "BABEL_ENV=client parcel build src/index.html --no-cache --public-url /static -d build/static --no-source-maps",
+    "build-server": "BABEL_ENV=client parcel build server/app.js --no-cache -d build -t node --no-source-maps",
+    "build": "yarn clear-build && yarn build-client && yarn build-server",
+    "serve": "NODE_ENV=production node build/app.js"
   }
 }

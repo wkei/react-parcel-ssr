@@ -1,9 +1,8 @@
-body {
-  background: #fafafa;
-  font-family: 'Avenir Next', sans-serif;
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
-
-.title {
-  font-weight: 100;
+body {
+  font: 16px/1.6 'Avenir Next', sans-serif;
+  background: #fafafa;
 }
