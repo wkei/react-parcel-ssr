@@ -18,5 +18,5 @@ app
   .use(ssrMiddleware)
  
 app.listen(port, function() {
-  console.log(`\n\nServer running at http://localhost:${port}...`)
+  console.info(`Server running at http://localhost:${port}...`)
 })

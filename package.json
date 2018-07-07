@@ -4,12 +4,15 @@
   "license": "MIT",
   "dependencies": {
     "babel-register": "^6.26.0",
+    "classnames": "^2.2.6",
     "express": "^4.16.3",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-cookie": "^2.2.0",
     "react-dom": "^16.4.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "universal-cookie-express": "^2.2.0"
   },
   "devDependencies": {
@@ -27,16 +30,17 @@
     "postcss-nested": "^3.0.0"
   },
   "scripts": {
-    "clear": "rm -rf dist .cache",
-    "clear-build": "rm -rf build",
+    "clear": "rm -rf .tmp .cache",
+    "clearbuild": "rm -rf build",
 
     "dev": "yarn clear && BABEL_ENV=client parcel src/index.html --out-dir .tmp --public-url /static/",
+    "devserver": "BABEL_ENV=server babel-node server/app.js",
+    "ssr": "concurrently 'yarn dev' 'yarn devserver'",
 
-    "ssr": "yarn dev && BABEL_ENV=server babel-node server/app.js",
+    "buildclient": "BABEL_ENV=client parcel build src/index.html --no-cache --public-url /static -d build/static --no-source-maps",
+    "buildserver": "BABEL_ENV=client parcel build server/app.js --no-cache -d build -t node --no-source-maps",
+    "build": "yarn clearbuild && concurrently 'yarn buildclient' 'yarn buildserver'",
 
-    "build-client": "BABEL_ENV=client parcel build src/index.html --no-cache --public-url /static -d build/static --no-source-maps",
-    "build-server": "BABEL_ENV=client parcel build server/app.js --no-cache -d build -t node --no-source-maps",
-    "build": "yarn clear-build && yarn build-client && yarn build-server",
     "serve": "NODE_ENV=production node build/app.js"
   }
 }

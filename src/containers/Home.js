@@ -1,14 +1,14 @@
-// src/components/App.js
+// src/components/Home.js
 import React, { Component } from 'react'
 import { instanceOf } from 'prop-types'
 import { withCookies, Cookies } from 'react-cookie'
  
+import Header from '~/components/Header'
 import NameForm from '~/components/NameForm'
 
-import '~/styles/main.css'
-import styles from './App.css'
+import styles from './Home.css'
  
-class App extends Component {
+class Home extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   }
@@ -21,7 +21,7 @@ class App extends Component {
       name: cookies.get('name') || 'Parcel'
     }
   }
- 
+
   handleNameChange = (name) => {
     const { cookies } = this.props
  
@@ -33,15 +33,13 @@ class App extends Component {
     const { name } = this.state
  
     return (
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>Who are you ???????</h1>
-        </header>
+      <main>
+        <Header title={'Who are you ?'} />
         <NameForm name={name} onChange={this.handleNameChange} />
         {this.state.name && <p className={styles.msg}>Hello {this.state.name}!</p>}
-      </div>
+      </main>
     )
   }
 }
  
-export default withCookies(App)
+export default withCookies(Home)

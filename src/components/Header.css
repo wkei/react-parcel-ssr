@@ -1,0 +1,19 @@
+.header {
+  margin-bottom: 2em;
+  border-bottom: 1px solid #ddd;
+  .title {
+    font-weight: 100;
+  }
+}
+
+.nav {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  .item {
+    margin: 10px;
+    &.active {
+      color: #000;
+      font-weight: 500;
+    }
+  }
+}

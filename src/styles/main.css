@@ -6,3 +6,11 @@ body {
   font: 16px/1.6 'Avenir Next', sans-serif;
   background: #fafafa;
 }
+
+a {
+  text-decoration: none;
+  color: #0645ad;
+  &:hover {
+    text-decoration: underline;
+  }
+}

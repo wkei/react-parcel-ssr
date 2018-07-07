@@ -2,27 +2,33 @@
 
 > React Server Side Rendering with Parcel and Babel.
 
-- [x] CSS Module
-- [x] Universal Cookies
-- [ ] react-router
-- [ ] react-redux
+- [x] CSS Modules (`postcss-modules` & `babel-plugin-css-modules-transform`)
+- [x] Universal cookie (`react-cookie` & `universal-cookie-express`)
+- [x] `react-router`
+- [ ] `react-redux`
 
 ## Structure
 
 ```
-├── build // build folder for production
+├── .tmp/
+├── .cache/
+├── build/
+├── server/
+│   ├── middlewares/
+│   │   ├── ssr.js
+│   │   └── tmpl.js
+│   └── app.js
+├── src/
+│   ├── components/
+│   ├── containers/
+│   ├── styles/
+│   ├── App.js
+│   ├── client.js
+│   ├── index.html
+│   └── routes.js
+├── README.md
 ├── package.json
-├── server
-│   ├── app.js
-│   └── middlewares
-│       ├── ssr.js
-│       └── tmpl.js
-└── src
-    ├── client.js // client js entry file
-    ├── components
-    ├── containers
-    ├── index.html
-    └── styles  // global style folder
+└── yarn.lock
 ```
 
 ## Develop in pure front end mode
