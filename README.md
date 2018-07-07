@@ -2,6 +2,11 @@
 
 > React Server Side Rendering with Parcel and Babel.
 
+- [x] CSS Module
+- [x] Universal Cookies
+- [ ] react-router
+- [ ] react-redux
+
 ## Structure
 
 ```
