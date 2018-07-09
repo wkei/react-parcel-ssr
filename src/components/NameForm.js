@@ -10,11 +10,14 @@ class NameForm extends Component {
   }
   render () {
     return (
-      <input
-        className={styles.input}
-        value={this.props.name}
-        onChange={e => this.props.onChange(e.target.value)}
-      />
+      <fieldset>
+        <legend>Please input your name:</legend>
+        <input
+          className={styles.input}
+          value={this.props.name}
+          onChange={e => this.props.onChange(e.target.value)}
+        />
+      </fieldset>
     )
   }
 }

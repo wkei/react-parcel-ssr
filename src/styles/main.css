@@ -1,3 +1,6 @@
+@import "normalize.css";
+@import './shared.css';
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -13,4 +16,14 @@ a {
   &:hover {
     text-decoration: underline;
   }
+}
+
+pre {
+  padding: 20px;
+  background: #eee;
+  font: 13px/1.6 Monaco, sans-serif;
+}
+
+fieldset {
+  border: 1px solid #ddd;
 }

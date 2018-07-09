@@ -23,6 +23,7 @@ class Header extends Component {
         <nav className={styles.nav}>
           <Link className={cx('item', { active: this.isActive('/') })} to='/'>HOME</Link>
           <Link className={cx('item', { active: this.isActive('/about') })} to='/about'>ABOUT</Link>
+          <Link className={cx('item', { active: this.isActive('/user') })} to='/user'>USER</Link>
         </nav>
 
         <h1 className={styles.title}>{ title }</h1>

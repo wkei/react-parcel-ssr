@@ -7,6 +7,9 @@ import routes from './routes'
 import '~/styles/main.css'
 
 class App extends Component {
+  componentDidMount () {
+    console.log('App componentDidMount')
+  }
   render () {
     return (
       <Switch>

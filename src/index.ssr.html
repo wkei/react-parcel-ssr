@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+  </head>
+  <body>
+    <div id='main-app'>
+      ${markup}
+    </div>
+    <script type="text/javascript">
+      window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+    </script>
+    <script type="text/javascript" src="./client.js"></script>
+  </body>
+</html>

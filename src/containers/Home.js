@@ -18,8 +18,12 @@ class Home extends Component {
  
     const { cookies } = props
     this.state = {
-      name: cookies.get('name') || 'Parcel'
+      name: cookies.get('name')
     }
+  }
+
+  componentDidMount () {
+    console.log('Home componentDidMount')
   }
 
   handleNameChange = (name) => {

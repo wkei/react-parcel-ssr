@@ -3,16 +3,22 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "babel-register": "^6.26.0",
+    "await-to-js": "^2.0.1",
     "classnames": "^2.2.6",
     "express": "^4.16.3",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.10",
+    "morgan": "^1.9.0",
+    "normalize.css": "^8.0.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-cookie": "^2.2.0",
     "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "universal-cookie-express": "^2.2.0"
   },
   "devDependencies": {
@@ -21,26 +27,28 @@
     "babel-plugin-css-modules-transform": "^1.6.1",
     "babel-plugin-root-import": "^6.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "concurrently": "^3.6.0",
+    "nodemon": "^1.17.5",
     "parcel": "^1.9.4",
     "parcel-bundler": "^1.9.4",
+    "postcss-import": "^11.1.0",
     "postcss-modules": "^1.1.0",
-    "postcss-nested": "^3.0.0"
+    "postcss-nested": "^3.0.0",
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
-    "clear": "rm -rf .tmp .cache",
-    "clearbuild": "rm -rf build",
-
-    "dev": "yarn clear && BABEL_ENV=client parcel src/index.html --out-dir .tmp --public-url /static/",
-    "devserver": "BABEL_ENV=server babel-node server/app.js",
-    "ssr": "concurrently 'yarn dev' 'yarn devserver'",
-
-    "buildclient": "BABEL_ENV=client parcel build src/index.html --no-cache --public-url /static -d build/static --no-source-maps",
-    "buildserver": "BABEL_ENV=client parcel build server/app.js --no-cache -d build -t node --no-source-maps",
-    "build": "yarn clearbuild && concurrently 'yarn buildclient' 'yarn buildserver'",
-
+    "clear": "rm -rf .tmp .cache build",
+    "dev": "BABEL_ENV=client parcel src/index.html --out-dir .tmp --public-url /static/ --no-cache",
+    "ssr:client": "BABEL_ENV=client parcel src/index.ssr.html --out-dir .tmp --out-file index.html --public-url /static/ --no-cache",
+    "ssr:server": "nodemon --exec 'BABEL_ENV=server babel-node server/app.js'",
+    "ssr": "concurrently 'yarn ssr:client' 'yarn ssr:server'",
+    "build:client": "BABEL_ENV=client parcel build src/index.html --no-cache --public-url /static -d build/static --no-source-maps",
+    "build:server": "BABEL_ENV=client parcel build server/app.js --no-cache -d build -t node --no-source-maps",
+    "build": "yarn clearbuild && concurrently 'yarn build:client' 'yarn build:server'",
     "serve": "NODE_ENV=production node build/app.js"
   }
 }

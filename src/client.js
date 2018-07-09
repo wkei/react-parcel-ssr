@@ -1,17 +1,26 @@
 // src/client.js
+import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 import { CookiesProvider } from 'react-cookie'
 import { BrowserRouter as Router } from 'react-router-dom'
  
 import App from '~/App'
+import configureStore from './store/configureStore'
+
+const preloadedState = window.__PRELOADED_STATE__
+delete window.__PRELOADED_STATE__
+const store = configureStore(preloadedState)
  
 ReactDOM.render(
-  <CookiesProvider>
-    <Router>
-      <App />
-    </Router>
-  </CookiesProvider>,
+  <Provider store={store}>
+    <CookiesProvider>
+      <Router>
+        <App />
+      </Router>
+    </CookiesProvider>
+  </Provider>,
   document.getElementById('main-app')
 )
 

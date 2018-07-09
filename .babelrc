@@ -1,6 +1,7 @@
 {
   "presets": [
     "env",
+    "stage-0",
     "react"
   ],
   "plugins": [
@@ -12,10 +13,11 @@
   "env": {
     "server": {
       "presets": [
-        "react",
         ["env", {
           "targets": { "node": "current" }
-        }]
+        }],
+        "stage-0",
+        "react"
       ],
       "plugins": [
         ["babel-plugin-root-import", {

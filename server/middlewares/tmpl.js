@@ -4,16 +4,16 @@ import path from 'path'
 import _template from 'lodash/template'
 
 let compiled = null
+let html = null
 
-export default (markup) => {
+export default ({ markup, preloadedState }) => {
   if (!compiled) {
     if (process.env.NODE_ENV === 'production') {
-      const html = fs.readFileSync(path.resolve(__dirname, './static/index.html'))
-      compiled = _template(html)
+      html = fs.readFileSync(path.resolve(__dirname, './static/index.html'))
     } else {
-      const html = fs.readFileSync(path.resolve(__dirname, '../../.tmp/index.html'))
-      compiled = _template(html)
+      html = fs.readFileSync(path.resolve(__dirname, '../../.tmp/index.html'))
     }
   }
-  return compiled({ markup })
+  compiled = _template(html)
+  return compiled({ markup, preloadedState })
 }

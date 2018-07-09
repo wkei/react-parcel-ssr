@@ -5,43 +5,56 @@
 - [x] CSS Modules (`postcss-modules` & `babel-plugin-css-modules-transform`)
 - [x] Universal cookie (`react-cookie` & `universal-cookie-express`)
 - [x] `react-router`
-- [ ] `react-redux`
+- [x] `isomorphic-fetch`
+- [x] `react-redux` (`redux-thunk`)
 
 ## Structure
 
 ```
-├── .tmp/
-├── .cache/
-├── build/
-├── server/
-│   ├── middlewares/
+.
+├── server
+│   ├── middlewares
+│   │   ├── matchRoute.js
 │   │   ├── ssr.js
 │   │   └── tmpl.js
 │   └── app.js
-├── src/
-│   ├── components/
-│   ├── containers/
-│   ├── styles/
+├── src
+│   ├── components
+│   │   └── ...
+│   ├── containers
+│   │   └── ...
+│   ├── store
+│   │   ├── actions
+│   │   │   └── ...
+│   │   ├── reducers
+│   │   │   └── ...
+│   │   ├── configureStore.js
+│   │   └── types.js
+│   ├── styles
+│   │   └── ...
+│   ├── utils
+│   │   └── ...
 │   ├── App.js
 │   ├── client.js
 │   ├── index.html
+│   ├── index.ssr.html
 │   └── routes.js
 ├── README.md
 ├── package.json
 └── yarn.lock
 ```
 
-## Develop in pure front end mode
+## Develop in pure front end mode ([http://localhost:1234](http://localhost:1234))
 ```
 yarn dev
 ```
 
-## Develop in SSR moe
+## Develop in SSR mode ([http://localhost:8080](http://localhost:8080))
 ```
 yarn ssr
 ```
 
-## Build & Serve
+## Build & Serve ([http://localhost:8080](http://localhost:8080))
 ```
 yarn build
 yarn serve
